@@ -25,29 +25,93 @@ const gameData: Record<string, { name: string; bugs: Bug[] }> = {
   'rivas': {
     name: 'RIVAS',
     bugs: [
-      { id: 1, title: 'Бесконечные деньги через дюп', description: 'Дублирование предметов в инвентаре при быстром нажатии', severity: 'critical' },
-      { id: 2, title: 'Пролетаем через стены', description: 'Баг с коллизией в северной части карты', severity: 'high' },
+      { 
+        id: 1, 
+        title: 'Бесконечные деньги через дюп', 
+        description: 'Критический эксплойт, позволяющий дублировать любые предметы в инвентаре. Для воспроизведения: открой инвентарь, выбери предмет, быстро нажимай E + Q одновременно с интервалом 0.1 секунды. Предмет копируется без ограничений. Можно фармить деньги, продавая дюпнутые вещи. Работает на всех серверах. Разработчики в курсе, но фикс ещё не выпущен.', 
+        severity: 'critical' 
+      },
+      { 
+        id: 2, 
+        title: 'Пролетаем через стены', 
+        description: 'Баг с физикой коллизий в северной части карты (координаты примерно X: 250, Y: 180). Если разогнаться и прыгнуть под определённым углом к стене здания около респавна, персонаж проходит сквозь текстуру. Позволяет попасть в закрытые зоны, сейфы, секретные комнаты. Особенно полезно в PvP режиме для скрытого перемещения. Воспроизводится стабильно в 8 из 10 попыток.', 
+        severity: 'high' 
+      },
+      { 
+        id: 3, 
+        title: 'Бессмертие через респавн', 
+        description: 'При смерти в определённой зоне (красная зона на мосту) и одновременном использовании аптечки персонаж респавнится с багнутым хитбоксом - любой урон не наносится. Эффект держится до выхода из игры. Абьюзеры используют это в PvP, становясь неубиваемыми. Для активации нужен точный тайминг - использовать аптечку за 0.5 сек до смерти.', 
+        severity: 'critical' 
+      },
     ],
   },
   'grow-garden': {
     name: 'GROW A GARDEN',
     bugs: [
-      { id: 1, title: 'Растения исчезают', description: 'При перезаходе в игру растения пропадают из инвентаря', severity: 'high' },
-      { id: 2, title: 'Бесплатные семена', description: 'Можно получить семена без оплаты через магазин', severity: 'medium' },
+      { 
+        id: 1, 
+        title: 'Растения исчезают после выхода', 
+        description: 'Серьёзный баг с сохранением прогресса. При выращивании редких растений (особенно золотых роз и алмазных тюльпанов) и выходе из игры до полного созревания, растения полностью удаляются из инвентаря и с грядок. Потеря может составлять до 10000 игровой валюты за один выход. Баг связан с десинхронизацией сервера. Временное решение: не выходи, пока растение не созреет на 100%.', 
+        severity: 'high' 
+      },
+      { 
+        id: 2, 
+        title: 'Бесплатные семена через магазин', 
+        description: 'Эксплойт в магазине семян позволяет получать премиум-семена бесплатно. Способ: открой магазин, добавь в корзину дорогие семена (например, Rainbow Seeds за 5000), затем быстро переключайся между вкладками "Обычные" и "Премиум" 5-6 раз подряд. После этого нажми "Купить" - семена добавятся в инвентарь, но деньги не спишутся. Работает только с премиум-семенами. Можно повторять каждые 10 минут.', 
+        severity: 'medium' 
+      },
+      { 
+        id: 3, 
+        title: 'Мгновенный рост растений', 
+        description: 'Баг с системой времени позволяет выращивать растения мгновенно. Если изменить время на устройстве (перевести часы на +24 часа вперёд), затем зайти в игру и сразу вернуть время назад, все растения созреют мгновенно. Позволяет фармить редкие растения с невероятной скоростью. Разработчики пытались исправить, но метод всё ещё работает на мобильных устройствах.', 
+        severity: 'high' 
+      },
     ],
   },
-  'adopt-me': {
-    name: 'ADOPT ME',
+  '99-night': {
+    name: '99 NIGHT',
     bugs: [
-      { id: 1, title: 'Дюп питомцев', description: 'Дублирование питомцев через трейд', severity: 'critical' },
-      { id: 2, title: 'Бесконечный опыт', description: 'Фарм опыта через баг с кормлением', severity: 'high' },
+      { 
+        id: 1, 
+        title: 'Бесконечные жизни через респавн', 
+        description: 'Критический баг выживания. На 13-й ночи, если умереть от зомби и одновременно нажать кнопку "Респавн" + открыть инвентарь (клавиши R + Tab), счётчик жизней не уменьшается, но персонаж возрождается. Можно использовать бесконечно. Игроки проходят все 99 ночей без единой смерти в статистике. Полностью ломает балансировку сложности и таблицу лидеров.', 
+        severity: 'critical' 
+      },
+      { 
+        id: 2, 
+        title: 'Дюп оружия и ресурсов', 
+        description: 'Баг позволяет клонировать любое оружие и ресурсы. Метод: положи предмет в сундук на базе, затем одновременно открой сундук и нажми "Забрать всё" + Alt+F4 (выход из игры). При повторном входе предмет будет и в сундуке, и в инвентаре. Особенно эффективно для дюпа легендарного оружия, боеприпасов и медикаментов. Некоторые игроки собирают целые арсеналы за час.', 
+        severity: 'critical' 
+      },
+      { 
+        id: 3, 
+        title: 'Враги не атакуют в безопасной зоне', 
+        description: 'На карте есть невидимая "безопасная зона" около координат X: -120, Y: 350 (рядом с заброшенной церковью). Если зайти в эту область, зомби и боссы полностью игнорируют игрока, даже если стрелять в них. Можно безопасно фармить опыт и лут, стреляя по врагам из зоны. Сообщество называет это место "Святилище». Работает на всех серверах без исключений.', 
+        severity: 'high' 
+      },
     ],
   },
   'steal-brainrot': {
     name: 'STEAL A BRAINROT',
     bugs: [
-      { id: 1, title: 'Телепорт к игрокам', description: 'Можно телепортироваться к любому игроку на карте', severity: 'critical' },
-      { id: 2, title: 'Невидимость', description: 'Баг с отключением рендера персонажа', severity: 'high' },
+      { 
+        id: 1, 
+        title: 'Телепорт к любому игроку', 
+        description: 'Эксплойт позволяет телепортироваться к любому игроку на сервере без ограничений. Способ: открой список игроков (Tab), наведи курсор на имя цели, затем одновременно нажми ПКМ + Enter + пробел в течение 0.3 секунды. Персонаж мгновенно телепортируется к выбранному игроку. Используется для кражи brainrot у других игроков до того, как они успеют среагировать. Можно телепортироваться даже через стены и на закрытые территории.', 
+        severity: 'critical' 
+      },
+      { 
+        id: 2, 
+        title: 'Невидимость через отключение рендера', 
+        description: 'Баг с отрисовкой персонажа делает тебя полностью невидимым для других игроков. Для активации: зайди в настройки графики, поставь качество на минимум, затем быстро переключи на максимум и сразу нажми Alt + Enter (переход в оконный режим) 3 раза подряд. Модель персонажа перестаёт отрисовываться на стороне других игроков, но ты видишь себя нормально. Можно красть brainrot невидимым. Эффект держится до перезахода.', 
+        severity: 'high' 
+      },
+      { 
+        id: 3, 
+        title: 'Бесконечная скорость бега', 
+        description: 'Глитч с системой стамины позволяет бегать с удвоенной скоростью без потери выносливости. Метод: во время бега (Shift зажат) открой инвентарь и начни использовать любой предмет, затем закрой инвентарь, не отпуская Shift. Скорость удваивается, стамина не тратится. Огромное преимущество в погонях за brainrot. Можно убегать от любого противника или первым добегать до спавна редких brainrot.', 
+        severity: 'high' 
+      },
     ],
   },
 };
@@ -179,55 +243,89 @@ const GamePage = () => {
         </div>
 
         {isAdminMode && (
-          <Card className="mb-8 bg-card border-2 border-secondary/50 neon-glow-purple">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-secondary">
-                <Icon name="Settings" size={24} />
-                Админ-панель
+          <Card className="mb-8 bg-gradient-to-br from-card to-secondary/5 border-2 border-secondary neon-glow-purple relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+            <CardHeader className="relative">
+              <CardTitle className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-secondary to-primary flex items-center justify-center">
+                  <Icon name="ShieldCheck" size={20} className="text-white" />
+                </div>
+                <div>
+                  <div className="text-2xl font-black bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">ADMIN PANEL</div>
+                  <div className="text-xs text-muted-foreground font-normal">Управление базой багов</div>
+                </div>
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <Input
-                placeholder="Название бага"
-                value={newBugTitle}
-                onChange={(e) => setNewBugTitle(e.target.value)}
-                className="bg-background border-secondary/30"
-              />
-              <Textarea
-                placeholder="Описание бага"
-                value={newBugDescription}
-                onChange={(e) => setNewBugDescription(e.target.value)}
-                className="bg-background border-secondary/30"
-              />
-              <div className="flex gap-2">
-                {(['low', 'medium', 'high', 'critical'] as const).map((sev) => (
-                  <Button
-                    key={sev}
-                    variant={newBugSeverity === sev ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => setNewBugSeverity(sev)}
-                  >
-                    {sev}
-                  </Button>
-                ))}
+            <CardContent className="space-y-4 relative">
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-secondary flex items-center gap-2">
+                  <Icon name="Tag" size={14} />
+                  Название бага
+                </label>
+                <Input
+                  placeholder="Введите название бага..."
+                  value={newBugTitle}
+                  onChange={(e) => setNewBugTitle(e.target.value)}
+                  className="bg-background/50 border-2 border-secondary/30 focus:border-secondary transition-all"
+                />
               </div>
-              <Button onClick={editingBug ? handleUpdateBug : handleAddBug} className="w-full">
-                {editingBug ? 'Обновить баг' : 'Добавить баг'}
-              </Button>
-              {editingBug && (
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-secondary flex items-center gap-2">
+                  <Icon name="FileText" size={14} />
+                  Подробное описание
+                </label>
+                <Textarea
+                  placeholder="Опишите баг максимально подробно: как воспроизвести, что происходит, последствия..."
+                  value={newBugDescription}
+                  onChange={(e) => setNewBugDescription(e.target.value)}
+                  className="bg-background/50 border-2 border-secondary/30 focus:border-secondary transition-all min-h-[120px]"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-secondary flex items-center gap-2">
+                  <Icon name="AlertTriangle" size={14} />
+                  Уровень опасности
+                </label>
+                <div className="grid grid-cols-4 gap-2">
+                  {(['low', 'medium', 'high', 'critical'] as const).map((sev) => (
+                    <Button
+                      key={sev}
+                      variant={newBugSeverity === sev ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => setNewBugSeverity(sev)}
+                      className={newBugSeverity === sev ? 'neon-glow' : ''}
+                    >
+                      {sev}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+              <div className="pt-4 space-y-2">
                 <Button 
-                  variant="outline" 
-                  onClick={() => {
-                    setEditingBug(null);
-                    setNewBugTitle('');
-                    setNewBugDescription('');
-                    setNewBugSeverity('medium');
-                  }}
-                  className="w-full"
+                  onClick={editingBug ? handleUpdateBug : handleAddBug} 
+                  className="w-full bg-gradient-to-r from-secondary to-primary hover:opacity-90 transition-all neon-glow-purple font-bold"
+                  size="lg"
                 >
-                  Отменить редактирование
+                  <Icon name={editingBug ? "RefreshCw" : "Plus"} size={18} className="mr-2" />
+                  {editingBug ? 'Обновить баг' : 'Добавить баг'}
                 </Button>
-              )}
+                {editingBug && (
+                  <Button 
+                    variant="outline" 
+                    onClick={() => {
+                      setEditingBug(null);
+                      setNewBugTitle('');
+                      setNewBugDescription('');
+                      setNewBugSeverity('medium');
+                    }}
+                    className="w-full"
+                  >
+                    <Icon name="X" size={16} className="mr-2" />
+                    Отменить редактирование
+                  </Button>
+                )}
+              </div>
             </CardContent>
           </Card>
         )}

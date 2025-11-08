@@ -5,7 +5,7 @@ import Icon from '@/components/ui/icon';
 const games = [
   { id: 'rivas', name: 'RIVAS', icon: 'Zap', color: 'from-cyan-500 to-blue-500' },
   { id: 'grow-garden', name: 'GROW A GARDEN', icon: 'Flower2', color: 'from-green-500 to-emerald-500' },
-  { id: 'adopt-me', name: 'ADOPT ME', icon: 'Heart', color: 'from-pink-500 to-rose-500' },
+  { id: '99-night', name: '99 NIGHT', icon: 'Moon', color: 'from-indigo-500 to-purple-500' },
   { id: 'steal-brainrot', name: 'STEAL A BRAINROT', icon: 'Brain', color: 'from-purple-500 to-violet-500' },
 ];
 
